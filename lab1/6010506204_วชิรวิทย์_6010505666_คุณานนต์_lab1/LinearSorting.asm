@@ -93,7 +93,7 @@ li $v0, 4
 la $a0, headA
 syscall
 
-li $13, 1 # i = 1
+li $13, 0 # i = 1
 
 LOOPA:
     slt $16, $13, $14 # check if i < n
@@ -123,7 +123,7 @@ syscall
 la $a0, headB
 syscall
 
-li $13, 1 # i = 1
+li $13, 0 # i = 1
 
 LOOPB:
     slt $16, $13, $14 # check if i < n
