@@ -79,6 +79,11 @@ sum_two_fact:
 
 	addu $fp, $zero, $sp
 
+  #fix bug by callee save
+  addi $sp, $sp, -8
+  sw $s0, 0($sp)
+  sw $s1, 4($sp)
+
   # reserve space for the three local variables x, y, and z
   addi $sp, $sp, -12
 
@@ -101,6 +106,11 @@ sum_two_fact:
   addi $sp, $sp, 4
 
   # call fact(b)
+
+  #fix bug by caller save
+  addi $sp, $sp, -4
+  sw $t0, 0($sp)
+
   lw $s1, 12($fp)
   addi $sp, $sp, -4
   sw $s1, 0($sp)
@@ -112,6 +122,10 @@ sum_two_fact:
   # adjust the stack pointer
   addi $sp, $sp, 4
 
+  #fix bug by caller save
+  lw $t0, 0($sp)
+  addi $sp, $sp, 4
+
   # z = x + y
   addu $t2, $t0, $t1
 
@@ -119,6 +133,11 @@ sum_two_fact:
 	# pointer by 12 as we have allocated 12 bytes of the stack
 	# memory for the local variables x, y, and z
 	addi $sp, $sp, 12
+
+  #fix bug by return callee save
+  lw $s0, 0($sp)
+  lw $s1, 4($sp)
+  addi $sp, $sp, 8
 
   # restore $ra and $fp
 	lw $ra, 4($sp)
@@ -146,10 +165,12 @@ main:
   addi $sp, $sp, -8
   sw $t1, 4($sp)
   sw $t0, 0($sp)
+
   jal sum_two_fact
 
   # adjust the stack pointer to deallocate the stack memory allocated for the two arguments
   addi $sp, $sp, 8
+
 
   # init_result += temp
   # temp has the return value from calling sum_two_fact and it is in $v0
