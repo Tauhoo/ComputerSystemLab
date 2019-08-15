@@ -86,49 +86,13 @@ foo:
     li $t2, 0xbeef # initialize z variable
 
     # y^z
-    li $t3, 0 # i = 0
-    li $t5, 1 # initail y^z
-    mult1:
-        slt $t4, $t3, $t2 # check if i < z
-        beq $t4, $0, exit_mult1 # exit loop  
-
-        mult $t5, $t1 # multiply y
-        mflo $t4 # store multiplication result to $t4
-        add $t5, $t4, $0 # store $t4 to $t5
-
-        addi $t3, 1 # increse i
-        j mult1
-    exit_mult1:
+    xor $t5, $t1, $t2
 
     # x^z 
-    li $t3, 0 # i = 0
-    li $t6, 1 # initail x^z
-    mult2:
-        slt $t4, $t3, $t2 # check if i < z
-        beq $t4, $0, exit_mult2 # exit loop  
-
-        mult $t6, $t0 # multiply x
-        mflo $t4 # store multiplication result to $t4
-        add $t6, $t4, $0 # store $t4 to $t6
-
-        addi $t3, 1 # increse i
-        j mult2
-    exit_mult2:
+    xor $t6, $t0, $t2 
 
     # y^x
-    li $t3, 0 # i = 0
-    li $t7, 1 # initail y^x
-    mult3:
-        slt $t4, $t3, $t0 # check if i < z
-        beq $t4, $0, exit_mult3 # exit loop  
-
-        mult $t7, $t1 # multiply x
-        mflo $t4 # store multiplication result to $t4
-        add $t7, $t4, $0 # store $t4 to $t6
-
-        addi $t3, 1 # increse i
-        j mult3
-    exit_mult3:
+    xor $t7, $t1, $t0
 
     #debug
     #add $a0, $t5, $0
