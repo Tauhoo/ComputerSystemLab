@@ -1,0 +1,13 @@
+
+512 8 1 => Overall miss ratio: 18.34665
+512 16 1 => Overall miss ratio: 17.79308
+512 32 1 => Overall miss ratio: 20.50975
+512 64 1 => Overall miss ratio: 39.14469
+4096 8 1 => Overall miss ratio: 6.03084
+4096 16 1 => Overall miss ratio: 5.03123
+4096 32 1 => Overall miss ratio: 5.71621
+4096 64 1 => Overall miss ratio: 8.85323
+1048576 8 1 => Overall miss ratio: 0.25000
+1048576 16 1 => Overall miss ratio: 0.12501
+1048576 32 1 => Overall miss ratio: 0.06251
+1048576 64 1 => Overall miss ratio: 0.03126
